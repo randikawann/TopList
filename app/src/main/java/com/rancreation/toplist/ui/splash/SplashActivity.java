@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 
 import com.rancreation.toplist.R;
-import com.rancreation.toplist.ui.auth.AuthViewModel;
 import com.rancreation.toplist.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
@@ -15,7 +14,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 
 public class SplashActivity extends DaggerAppCompatActivity {
 
-    private static final String TAG = "AuthActivity";
+    private static final String TAG = "SplashActivity";
 
     SplashViewModel viewModel;
 
