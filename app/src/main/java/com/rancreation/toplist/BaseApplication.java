@@ -2,6 +2,7 @@ package com.rancreation.toplist;
 
 
 import com.rancreation.toplist.di.DaggerAppComponent;
+import com.rancreation.toplist.di.database.RoomModule;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
@@ -12,7 +13,10 @@ import dagger.android.support.DaggerApplication;
 public class BaseApplication extends DaggerApplication {
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerAppComponent.builder().application(this).build();
-//        return null;
+        return DaggerAppComponent
+                .builder()
+                .application(this)
+                .roomModule(new RoomModule(this))
+                .build();
     }
 }

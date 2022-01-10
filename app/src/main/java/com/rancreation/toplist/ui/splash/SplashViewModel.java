@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
 import com.rancreation.toplist.models.AdMarketProperty;
 import com.rancreation.toplist.models.Category;
@@ -37,12 +38,14 @@ public class SplashViewModel extends ViewModel {
         this.splashRepoitory = splashRepoitory;
 
         getAllCategory();
-        getAllDistrict();
+//        getAllDistrict();
 
         //HOmeProperty
-        getHomeMarket();
-        getHomeProperty();
-        getHomeService();
+//        getHomeMarket();
+//        getHomeProperty();
+//        getHomeService();
+
+        Log.i(TAG, "CATEGORY LIST "+splashRepoitory.getCategoryList().toString());
     }
 
     private void getHomeService() {
@@ -182,13 +185,13 @@ public class SplashViewModel extends ViewModel {
                     }
 
                     @Override
-                    public void onNext(@NonNull List<Category> user) {
-                        Log.d(TAG, "1111: "+user);
-                        for(int i=0; i<user.size();i++){
-                            Log.d(TAG,user.get(i).getCatEn());
-                            for(int j=0; j<user.get(i).getSubcategories().size(); j++){
-                                Log.d(TAG, "       Sub: "+user.get(i).getSubcategories().get(j).getSubcatEn());
-                            }
+                    public void onNext(@NonNull List<Category> categoryList) {
+                        Log.d(TAG, "1111: "+categoryList);
+                        for(int i=0; i<categoryList.size();i++){
+                            Log.d(TAG,categoryList.get(i).getCatEn());
+//                            for(int j=0; j<categoryList.get(i).getSubcategories().size(); j++){
+//                                Log.d(TAG, "       Sub: "+categoryList.get(i).getSubcategories().get(j).getSubcatEn());
+//                            }
                         }
                     }
 

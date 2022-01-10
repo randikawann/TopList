@@ -4,12 +4,19 @@ package com.rancreation.toplist.models;
  * Created by xitebdeveloper on 5/5/17.
  */
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity
 public class Category {
+
+    @NonNull
+    @PrimaryKey
     @SerializedName("cat_id")
     @Expose
     private String catId;
@@ -34,9 +41,9 @@ public class Category {
     @Expose
     private String type;
 
-    @SerializedName("subcategories")
-    @Expose
-    private List<Subcategory> subcategories = null;
+//    @SerializedName("subcategories")
+//    @Expose
+//    private List<Subcategory> subcategories = null;
 
     public String getCatId() {
         return catId;
@@ -86,11 +93,11 @@ public class Category {
         this.catIcon = catIcon;
     }
 
-    public List<Subcategory> getSubcategories() {
-        return subcategories;
-    }
+//    public List<Subcategory> getSubcategories() {
+//        return subcategories;
+//    }
 
-    public void setSubcategories(List<Subcategory> subcategories) {
-        this.subcategories = subcategories;
-    }
+//    public void setSubcategories(List<Subcategory> subcategories) {
+//        this.subcategories = subcategories;
+//    }
 }
