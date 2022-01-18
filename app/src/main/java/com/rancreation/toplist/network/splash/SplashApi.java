@@ -21,19 +21,19 @@ import retrofit2.http.Path;
  */
 public interface SplashApi {
 
-    @GET("v1/get_cat_subcat")
+    @GET(Constants.CATEGORY_PART)
     Flowable<List<Category>> getCategory();
 
-    @GET("v1/get_dist_city")
+    @GET(Constants.DISTRICT_PART)
     Flowable<List<District>> getDistrict();
 
-    @GET("v1/get_market_ads_home?pagest=1&pageed=20")
+    @GET(Constants.MARKET_HOME_PART+Constants.PAGE_BETWEEN_PART)
     Flowable<List<AdMarketProperty>> getHomeMarket();
 
-    @GET("v1/get_property_ads_home?pagest=1&pageed=20")
+    @GET(Constants.PROPERTY_HOME_PART+Constants.PAGE_BETWEEN_PART)
     Flowable<List<AdMarketProperty>> getHomeProperty();
 
-    @GET("v1/get_services_ads_home?pagest=1&pageed=20")
+    @GET(Constants.SERVICE_HOME_PART+Constants.PAGE_BETWEEN_PART)
     Flowable<List<AdMarketProperty>> getHomeService();
 
 }

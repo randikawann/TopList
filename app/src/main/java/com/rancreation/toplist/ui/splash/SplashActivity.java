@@ -1,12 +1,17 @@
 package com.rancreation.toplist.ui.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.rancreation.toplist.R;
+import com.rancreation.toplist.models.Category;
 import com.rancreation.toplist.viewmodels.ViewModelProviderFactory;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -27,5 +32,15 @@ public class SplashActivity extends DaggerAppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         viewModel = ViewModelProviders.of(this, providerFactory).get(SplashViewModel.class);
+
+
+        viewModel.getCategoryFromDataBase().observe(this, new Observer<List<Category>>() {
+            @Override
+            public void onChanged(List<Category> categories) {
+                for(int i=0; i<categories.size(); i++){
+                    Log.i(TAG, "LIST ITEMS "+categories.get(i).getCatEn());
+                }
+            }
+        });
     }
 }

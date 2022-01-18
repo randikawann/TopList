@@ -1,20 +1,16 @@
 package com.rancreation.toplist.di;
 
 import android.app.Application;
-import android.graphics.drawable.Drawable;
-
-import androidx.core.content.ContextCompat;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
-import com.rancreation.toplist.R;
+import androidx.room.Room;
+import com.rancreation.toplist.data.CategoryDao;
+import com.rancreation.toplist.data.TopListDatabase;
 import com.rancreation.toplist.util.Constants;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,6 +23,18 @@ public class AppModule {
     // put all the all the application dependencies the project
     // Ex: Retrofit, Glide
 
+//    @Provides
+//    @Singleton
+//    OkHttpClient provideOkHttpClient() {
+//        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+//        okHttpClient.connectTimeout(ApiConstants.CONNECT_TIMEOUT, TimeUnit.MILLISECONDS);
+//        okHttpClient.readTimeout(ApiConstants.READ_TIMEOUT, TimeUnit.MILLISECONDS);
+//        okHttpClient.writeTimeout(ApiConstants.WRITE_TIMEOUT, TimeUnit.MILLISECONDS);
+//        okHttpClient.addInterceptor(new RequestInterceptor());
+//        okHttpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+//        return okHttpClient.build();
+//    }
+
     @Singleton
     @Provides
     static Retrofit provideRetrofitInstance(){
@@ -35,6 +43,18 @@ public class AppModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    TopListDatabase provideArticleDatabase(Application application) {
+        return Room.databaseBuilder(application, TopListDatabase.class, "ListItem.db").build();
+    }
+
+    @Provides
+    @Singleton
+    CategoryDao provideArticleDao(TopListDatabase topListDatabase) {
+        return topListDatabase.categoryDao();
     }
 
 }

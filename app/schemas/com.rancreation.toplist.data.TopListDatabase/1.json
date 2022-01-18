@@ -1,0 +1,64 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "86d6e9540a7b503cd4fc88ef3e3fa01a",
+    "entities": [
+      {
+        "tableName": "Category",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`catId` TEXT, `catEn` TEXT NOT NULL, `catSi` TEXT, `catTa` TEXT, `catIcon` TEXT, `type` TEXT, PRIMARY KEY(`catEn`))",
+        "fields": [
+          {
+            "fieldPath": "catId",
+            "columnName": "catId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "catEn",
+            "columnName": "catEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "catSi",
+            "columnName": "catSi",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "catTa",
+            "columnName": "catTa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "catIcon",
+            "columnName": "catIcon",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "catEn"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '86d6e9540a7b503cd4fc88ef3e3fa01a')"
+    ]
+  }
+}
