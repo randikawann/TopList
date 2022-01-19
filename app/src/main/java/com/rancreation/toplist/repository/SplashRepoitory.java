@@ -49,8 +49,8 @@ public class SplashRepoitory {
 
     public void loadAllData(){
 
-//        getRetrofitCategory();
-//        getRetrofitDistrict();
+        getRetrofitCategory();
+        getRetrofitDistrict();
         getRetrofitHomeMarket();
         getRetrofitHomeProperty();
         getRetrofitHomeService();
@@ -297,12 +297,10 @@ public class SplashRepoitory {
     }
 
     public Flowable<List<Category>> getCategory(){
-
         return splashApi.getCategory();
     }
 
     public Flowable<List<District>> getDistrict(){
-
         return splashApi.getDistrict();
     }
 

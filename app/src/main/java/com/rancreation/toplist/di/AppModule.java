@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class AppModule {
     // put all the all the application dependencies the project
-    // Ex: Retrofit, Glide
+    // Ex: Retrofit, Glide, Room
 
 //    @Provides
 //    @Singleton
