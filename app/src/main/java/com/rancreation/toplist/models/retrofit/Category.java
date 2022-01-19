@@ -1,9 +1,5 @@
 package com.rancreation.toplist.models.retrofit;
 
-/**
- * Created by xitebdeveloper on 5/5/17.
- */
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -39,9 +35,9 @@ public class Category {
     @Expose
     private String type;
 
-//    @SerializedName("subcategories")
-//    @Expose
-//    private List<Subcategory> subcategories = null;
+    @SerializedName("subcategories")
+    @Expose
+    private List<Subcategory> subcategories = null;
 
     public String getCatId() {
         return catId;
@@ -91,11 +87,11 @@ public class Category {
         this.catIcon = catIcon;
     }
 
-//    public List<Subcategory> getSubcategories() {
-//        return subcategories;
-//    }
+    public List<Subcategory> getSubcategories() {
+        return subcategories;
+    }
 
-//    public void setSubcategories(List<Subcategory> subcategories) {
-//        this.subcategories = subcategories;
-//    }
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
+    }
 }

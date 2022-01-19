@@ -1,26 +1,28 @@
-package com.rancreation.toplist.models.retrofit;
+package com.rancreation.toplist.models.room;
+
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class City {
 
-    @SerializedName("city_id")
-    @Expose
+@Entity
+public class CityEntity {
+
+    @NonNull
+    @PrimaryKey
     private String cityId;
-    @SerializedName("city_en")
-    @Expose
+
     private String cityEn;
-    @SerializedName("city_si")
-    @Expose
+
     private String citySi;
-    @SerializedName("city_ta")
-    @Expose
+
     private String cityTa;
-    @SerializedName("lat")
-    @Expose
+
     private String lat;
-    @SerializedName("lng")
-    @Expose
+
     private String lng;
 
     public String getCityId() {

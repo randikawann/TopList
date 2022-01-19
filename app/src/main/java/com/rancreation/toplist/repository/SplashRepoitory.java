@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import com.rancreation.toplist.data.CategoryDao;
 import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.room.CategoryEntity;
+import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.network.splash.SplashApi;
 
 import java.util.List;
@@ -47,8 +48,6 @@ public class SplashRepoitory {
 
                     @Override
                     public void onNext(@NonNull List<Category> categories) {
-                        Log.d(TAG, "1111: "+categories);
-
 
 
                         for(int i=0; i<categories.size();i++){
@@ -61,9 +60,29 @@ public class SplashRepoitory {
                             categoryentity.setCatIcon(categories.get(i).getCatIcon());
                             categoryentity.setType(categories.get(i).getType());
 
-                            long dc = categoryDao.createNewCategory(categoryentity);
-                            Log.d(TAG,"db number "+dc);
-                            Log.d(TAG,categories.get(i).getCatEn());
+                            long catDb = categoryDao.createNewCategory(categoryentity);
+//                            Log.d(TAG,"db number "+dc);
+//                            Log.d(TAG,categories.get(i).getCatEn());
+
+
+
+                            for(int j=0; j<categories.get(i).getSubcategories().size(); j++){
+
+//                                Log.d(TAG,"Sub cat-> cat id" +categories.get(i).getCatId());
+//                                Log.d(TAG,"Sub cat id "+categories.get(i).getSubcategories().get(j).getSubcatId());
+//                                Log.d(TAG,"sub cat name "+categories.get(i).getSubcategories().get(j).getSubcatEn());
+
+                                SubcategoryEntity subcategoryEntity = new SubcategoryEntity();
+                                subcategoryEntity.setSubcatId(categories.get(i).getSubcategories().get(j).getSubcatId());
+                                subcategoryEntity.setCatId(categories.get(i).getCatId());
+                                subcategoryEntity.setSubcatEn(categories.get(i).getSubcategories().get(j).getSubcatEn());
+                                subcategoryEntity.setSubcatSi(categories.get(i).getSubcategories().get(j).getSubcatSi());
+                                subcategoryEntity.setSubcatTa(categories.get(i).getSubcategories().get(j).getSubcatTa());
+                                subcategoryEntity.setSubcatIcon(categories.get(i).getSubcategories().get(j).getSubcatIcon());
+
+                                long subCatDb = categoryDao.createNewSubCategory(subcategoryEntity);
+                                Log.d(TAG,"subCatDb "+subCatDb);
+                            }
                         }
                     }
 
@@ -104,6 +123,15 @@ public class SplashRepoitory {
 
     }
 
+    public LiveData<List<SubcategoryEntity>> getSubCategoryFromDataBase(String catId){
+        return categoryDao.getSubCategoryListByCatId(catId);
+
+    }
+
+    public LiveData<List<SubcategoryEntity>> getSubCategoryList(){
+        return categoryDao.getSubCategoryList();
+
+    }
 
 
 

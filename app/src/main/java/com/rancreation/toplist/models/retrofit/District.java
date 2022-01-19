@@ -1,8 +1,5 @@
 package com.rancreation.toplist.models.retrofit;
 
-/**
- * Created by xitebdeveloper on 5/8/17.
- */
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

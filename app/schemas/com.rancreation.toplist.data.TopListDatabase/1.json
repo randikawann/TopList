@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e4a7f9117353080a720d7848a8a8942b",
+    "identityHash": "a8ff65cc71bb9ea7fbd7481a7d2cc281",
     "entities": [
       {
         "tableName": "CategoryEntity",
@@ -53,12 +53,62 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "SubcategoryEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`subcatId` TEXT NOT NULL, `catId` TEXT, `subcatEn` TEXT, `subcatSi` TEXT, `subcatTa` TEXT, `subcatIcon` TEXT, PRIMARY KEY(`subcatId`))",
+        "fields": [
+          {
+            "fieldPath": "subcatId",
+            "columnName": "subcatId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "catId",
+            "columnName": "catId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subcatEn",
+            "columnName": "subcatEn",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subcatSi",
+            "columnName": "subcatSi",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subcatTa",
+            "columnName": "subcatTa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subcatIcon",
+            "columnName": "subcatIcon",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "subcatId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e4a7f9117353080a720d7848a8a8942b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a8ff65cc71bb9ea7fbd7481a7d2cc281')"
     ]
   }
 }

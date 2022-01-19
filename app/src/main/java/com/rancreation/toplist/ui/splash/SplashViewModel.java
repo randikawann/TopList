@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.room.CategoryEntity;
+import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.repository.SplashRepoitory;
 
 import java.util.List;
@@ -168,6 +169,14 @@ public class SplashViewModel extends ViewModel {
 
     public LiveData<List<CategoryEntity>> getCategoryFromDataBase(){
         return splashRepoitory.getCategoryFromDataBase();
+    }
+
+    public LiveData<List<SubcategoryEntity>> getCategoryFromDataBase(String catId){
+        return splashRepoitory.getSubCategoryFromDataBase(catId);
+    }
+
+    public LiveData<List<SubcategoryEntity>> getSubCategoryList(){
+        return splashRepoitory.getSubCategoryList();
     }
 
 

@@ -1,27 +1,28 @@
-package com.rancreation.toplist.models.retrofit;
+package com.rancreation.toplist.models.room;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Subcategory {
+@Entity
+public class SubcategoryEntity {
 
-    @SerializedName("subcat_id")
-    @Expose
+    @NonNull
+    @PrimaryKey
     private String subcatId;
-    @SerializedName("subcat_en")
-    @Expose
+
+    private String catId;
+
     private String subcatEn;
-    @SerializedName("subcat_si")
-    @Expose
+
     private String subcatSi;
-    @SerializedName("subcat_ta")
-    @Expose
+
     private String subcatTa;
-    @SerializedName("subcat_icon")
-    @Expose
+
     private String subcatIcon;
 
     public String getCatId() {
@@ -31,8 +32,6 @@ public class Subcategory {
     public void setCatId(String catId) {
         this.catId = catId;
     }
-
-    private String catId;
 
     public String getSubcatId() {
         return subcatId;

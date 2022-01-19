@@ -16,22 +16,16 @@ public class CategoryEntity {
 
     @NonNull
     @PrimaryKey
-    @Expose
     private String catId;
 
-    @Expose
     private String catEn;
 
-    @Expose
     private String catSi;
 
-    @Expose
     private String catTa;
 
-    @Expose
     private String catIcon;
 
-    @Expose
     private String type;
 
 

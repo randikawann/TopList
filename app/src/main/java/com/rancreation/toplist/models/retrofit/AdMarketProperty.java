@@ -1,9 +1,5 @@
 package com.rancreation.toplist.models.retrofit;
 
-/**
- * Created by xitebdeveloper on 5/3/17.
- */
-
 
 import android.graphics.Bitmap;
 
