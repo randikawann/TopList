@@ -7,13 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
-import com.bumptech.glide.load.engine.Resource;
 import com.rancreation.toplist.data.CategoryDao;
-import com.rancreation.toplist.models.AdMarketProperty;
-import com.rancreation.toplist.models.Category;
-import com.rancreation.toplist.models.District;
-import com.rancreation.toplist.models.User;
-import com.rancreation.toplist.network.auth.AuthApi;
+import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.network.splash.SplashApi;
 
 import java.util.List;
@@ -21,7 +16,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -68,7 +62,6 @@ public class SplashRepoitory {
 
                     @Override
                     public void onComplete() {
-                        getCategoryFromDataBase();
                     }
                 });
     }

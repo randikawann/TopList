@@ -1,6 +1,5 @@
 package com.rancreation.toplist.ui.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -8,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.rancreation.toplist.R;
-import com.rancreation.toplist.models.Category;
+import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.viewmodels.ViewModelProviderFactory;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public class SplashActivity extends DaggerAppCompatActivity {
             @Override
             public void onChanged(List<Category> categories) {
                 for(int i=0; i<categories.size(); i++){
-                    Log.i(TAG, "LIST ITEMS "+categories.get(i).getCatEn());
+                    Log.i(TAG, "LIST ITEMS *: "+categories.get(i).getCatId());
                 }
             }
         });

@@ -4,7 +4,7 @@ package com.rancreation.toplist.util;
  * Created by Randika Wanninayaka on 2021-12-14.
  */
 public class Constants {
-    public static final String BASE_URL = "";
+
 
 
     public static final String CATEGORY_PART = "v1/get_cat_subcat";

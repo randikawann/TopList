@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.rancreation.toplist.models.Category;
+import com.rancreation.toplist.models.retrofit.Category;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public interface CategoryDao {
     @Query("SELECT * FROM CATEGORY WHERE catId = :catId")
     LiveData<Category> getCategoryListById(String catId);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     Long createNewCategory(Category category);
 
     @Delete

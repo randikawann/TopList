@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 
 
-import com.rancreation.toplist.models.User;
+import com.rancreation.toplist.models.retrofit.User;
 import com.rancreation.toplist.repository.UserRepoitory;
 
 import javax.inject.Inject;

@@ -1,20 +1,15 @@
 package com.rancreation.toplist.network.splash;
 
 
-import androidx.constraintlayout.helper.widget.Flow;
-
-import com.rancreation.toplist.models.AdMarketProperty;
-import com.rancreation.toplist.models.Category;
-import com.rancreation.toplist.models.District;
-import com.rancreation.toplist.models.User;
+import com.rancreation.toplist.models.retrofit.AdMarketProperty;
+import com.rancreation.toplist.models.retrofit.Category;
+import com.rancreation.toplist.models.retrofit.District;
 import com.rancreation.toplist.util.Constants;
 
 import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 /**
  * Created by Randika Wanninayaka on 2021-12-14.

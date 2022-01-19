@@ -1,4 +1,4 @@
-package com.rancreation.toplist.models;
+package com.rancreation.toplist.models.retrofit;
 
 /**
  * Created by xitebdeveloper on 5/5/17.
@@ -15,12 +15,12 @@ import java.util.List;
 @Entity
 public class Category {
 
+    @NonNull
+    @PrimaryKey
     @SerializedName("cat_id")
     @Expose
     private String catId;
 
-    @NonNull
-    @PrimaryKey
     @SerializedName("cat_en")
     @Expose
     private String catEn;

@@ -1,7 +1,7 @@
 package com.rancreation.toplist.network.auth;
 
 
-import com.rancreation.toplist.models.User;
+import com.rancreation.toplist.models.retrofit.User;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;

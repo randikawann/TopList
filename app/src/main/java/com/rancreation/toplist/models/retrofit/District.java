@@ -1,4 +1,4 @@
-package com.rancreation.toplist.models;
+package com.rancreation.toplist.models.retrofit;
 
 /**
  * Created by xitebdeveloper on 5/8/17.

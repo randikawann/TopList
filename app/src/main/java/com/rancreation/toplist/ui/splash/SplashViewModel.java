@@ -1,10 +1,9 @@
 package com.rancreation.toplist.ui.splash;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.rancreation.toplist.models.Category;
+import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.repository.SplashRepoitory;
 
 import java.util.List;

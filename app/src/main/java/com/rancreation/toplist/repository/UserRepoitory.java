@@ -2,9 +2,8 @@ package com.rancreation.toplist.repository;
 
 
 
-import com.rancreation.toplist.models.User;
+import com.rancreation.toplist.models.retrofit.User;
 import com.rancreation.toplist.network.auth.AuthApi;
-import com.rancreation.toplist.network.splash.SplashApi;
 
 import javax.inject.Inject;
 

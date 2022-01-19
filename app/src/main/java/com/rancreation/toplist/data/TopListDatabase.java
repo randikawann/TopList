@@ -3,7 +3,7 @@ package com.rancreation.toplist.data;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.rancreation.toplist.models.Category;
+import com.rancreation.toplist.models.retrofit.Category;
 
 /**
  * Created by Randika Wanninayaka on 2022-01-07.
