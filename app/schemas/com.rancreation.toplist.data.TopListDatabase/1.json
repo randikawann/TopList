@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bc05765b409e7ac366114dbddc179fca",
+    "identityHash": "6d2e821388675975f77513fdee953f6d",
     "entities": [
       {
         "tableName": "CategoryEntity",
@@ -197,12 +197,122 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "HomeAdsEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `brand` TEXT, `adsType` TEXT, `price` TEXT, `approveTime` TEXT, `title` TEXT, `cat` TEXT, `subcat` TEXT, `distEn` TEXT, `cityEn` TEXT, `classifiedType` TEXT, `image` TEXT, `soldStatus` TEXT, `memberRole` TEXT, `rejectedStatus` TEXT, `favouriteStatus` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "brand",
+            "columnName": "brand",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "adsType",
+            "columnName": "adsType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "approveTime",
+            "columnName": "approveTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cat",
+            "columnName": "cat",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "subcat",
+            "columnName": "subcat",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "distEn",
+            "columnName": "distEn",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cityEn",
+            "columnName": "cityEn",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "classifiedType",
+            "columnName": "classifiedType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "soldStatus",
+            "columnName": "soldStatus",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "memberRole",
+            "columnName": "memberRole",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rejectedStatus",
+            "columnName": "rejectedStatus",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "favouriteStatus",
+            "columnName": "favouriteStatus",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bc05765b409e7ac366114dbddc179fca')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6d2e821388675975f77513fdee953f6d')"
     ]
   }
 }

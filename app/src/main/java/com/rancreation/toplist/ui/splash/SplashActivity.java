@@ -11,6 +11,7 @@ import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.room.CategoryEntity;
 import com.rancreation.toplist.models.room.CityEntity;
 import com.rancreation.toplist.models.room.DistrictEntity;
+import com.rancreation.toplist.models.room.HomeAdsEntity;
 import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.viewmodels.ViewModelProviderFactory;
 
@@ -91,6 +92,25 @@ public class SplashActivity extends DaggerAppCompatActivity {
             @Override
             public void onChanged(List<CityEntity> cities) {
                 for(int i=0; i<cities.size(); i++){
+
+                }
+            }
+        });
+
+        viewModel.getHomeAllAdsFromDb().observe(this, new Observer<List<HomeAdsEntity>>() {
+            @Override
+            public void onChanged(List<HomeAdsEntity> homeads) {
+                for(int i=0; i<homeads.size(); i++){
+
+                }
+            }
+        });
+
+        // "market", "property", "services"
+        viewModel.getCategoryListByTypeFromDb("services").observe(this, new Observer<List<HomeAdsEntity>>() {
+            @Override
+            public void onChanged(List<HomeAdsEntity> homeads) {
+                for(int i=0; i<homeads.size(); i++){
 
                 }
             }

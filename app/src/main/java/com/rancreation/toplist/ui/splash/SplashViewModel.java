@@ -7,6 +7,7 @@ import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.room.CategoryEntity;
 import com.rancreation.toplist.models.room.CityEntity;
 import com.rancreation.toplist.models.room.DistrictEntity;
+import com.rancreation.toplist.models.room.HomeAdsEntity;
 import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.repository.SplashRepoitory;
 
@@ -31,36 +32,6 @@ public class SplashViewModel extends ViewModel {
 
     }
 
-//    private void getHomeService() {
-//        splashRepoitory.getHomeService()
-//                .toObservable()
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Observer<List<AdMarketProperty>>() {
-//                    @Override
-//                    public void onSubscribe(@NonNull Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(@NonNull List<AdMarketProperty> districts) {
-//
-//                        for(int i=0; i<districts.size();i++){
-//                            Log.d(TAG, "Service "+districts.get(i).getDistEn());
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//                        Log.d(TAG, "onError: "+e);
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//
-//                    }
-//                });
-//    }
 
 //    private void getHomeProperty() {
 //        splashRepoitory.getHomeProperty()
@@ -150,6 +121,14 @@ public class SplashViewModel extends ViewModel {
 
     public LiveData<List<CityEntity>> getCityByDistrictFromDb(String id){
         return splashRepoitory.getCityByDistrictFromDb(id);
+    }
+
+    public LiveData<List<HomeAdsEntity>> getHomeAllAdsFromDb(){
+        return splashRepoitory.getHomeAllAdsFromDb();
+    }
+
+    public LiveData<List<HomeAdsEntity>> getCategoryListByTypeFromDb(String classificationType){
+        return splashRepoitory.getCategoryListByTypeFromDb(classificationType);
     }
 
 

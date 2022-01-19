@@ -4,6 +4,7 @@ import android.app.Application;
 import androidx.room.Room;
 import com.rancreation.toplist.data.CategoryDao;
 import com.rancreation.toplist.data.DistrictDao;
+import com.rancreation.toplist.data.HomeAdsDao;
 import com.rancreation.toplist.data.TopListDatabase;
 import com.rancreation.toplist.util.Constants;
 
@@ -62,6 +63,12 @@ public class AppModule {
     @Singleton
     DistrictDao provideArticleDistrictDao(TopListDatabase topListDatabase) {
         return topListDatabase.districtDao();
+    }
+
+    @Provides
+    @Singleton
+    HomeAdsDao provideArticleHomeAdsDao(TopListDatabase topListDatabase) {
+        return topListDatabase.homeAdsDao();
     }
 
 }

@@ -9,11 +9,14 @@ import androidx.lifecycle.LiveData;
 
 import com.rancreation.toplist.data.CategoryDao;
 import com.rancreation.toplist.data.DistrictDao;
+import com.rancreation.toplist.data.HomeAdsDao;
+import com.rancreation.toplist.models.retrofit.AdMarketProperty;
 import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.retrofit.District;
 import com.rancreation.toplist.models.room.CategoryEntity;
 import com.rancreation.toplist.models.room.CityEntity;
 import com.rancreation.toplist.models.room.DistrictEntity;
+import com.rancreation.toplist.models.room.HomeAdsEntity;
 import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.network.splash.SplashApi;
 
@@ -33,20 +36,24 @@ public class SplashRepoitory {
     private SplashApi splashApi;
     private CategoryDao categoryDao;
     private DistrictDao districtDao;
+    private HomeAdsDao homeAdsDao;
     private static final String TAG = "SplashRepoitory";
 
     @Inject
-    public SplashRepoitory(SplashApi splashApi, CategoryDao categoryDao, DistrictDao districtDao){
+    public SplashRepoitory(SplashApi splashApi, CategoryDao categoryDao, DistrictDao districtDao, HomeAdsDao homeAdsDao){
         this.splashApi = splashApi;
         this.categoryDao = categoryDao;
         this.districtDao = districtDao;
+        this.homeAdsDao = homeAdsDao;
     }
 
     public void loadAllData(){
 
 //        getRetrofitCategory();
-        getRetrofitDistrict();
-
+//        getRetrofitDistrict();
+        getRetrofitHomeMarket();
+        getRetrofitHomeProperty();
+        getRetrofitHomeService();
 
 
     }
@@ -165,6 +172,130 @@ public class SplashRepoitory {
                 });
     }
 
+    private void getRetrofitHomeMarket(){
+        getHomeMarket()
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<List<AdMarketProperty>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<AdMarketProperty> ads) {
+
+                        for(int i=0; i<ads.size();i++){
+//                            Log.d(TAG, "Service "+districts.get(i).getDistEn());
+                            homeAdsSaveToDB( ads.get(i));
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError: "+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void getRetrofitHomeProperty(){
+        getHomeProperty()
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<List<AdMarketProperty>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<AdMarketProperty> ads) {
+
+                        for(int i=0; i<ads.size();i++){
+//                            Log.d(TAG, "Service "+districts.get(i).getDistEn());
+                            homeAdsSaveToDB( ads.get(i));
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError: "+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void getRetrofitHomeService(){
+        getHomeService()
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<List<AdMarketProperty>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<AdMarketProperty> ads) {
+
+                        for(int i=0; i<ads.size();i++){
+//                            Log.d(TAG, "Service "+districts.get(i).getDistEn());
+                            homeAdsSaveToDB( ads.get(i));
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError: "+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    private void homeAdsSaveToDB(AdMarketProperty adsHome) {
+
+        HomeAdsEntity homeAdsEntity = new HomeAdsEntity();
+        homeAdsEntity.setId(adsHome.getId());
+        homeAdsEntity.setBrand(adsHome.getBrand());
+        homeAdsEntity.setAdsType(adsHome.getAdsType());
+        homeAdsEntity.setPrice(adsHome.getPrice());
+        homeAdsEntity.setApproveTime(adsHome.getApproveTime());
+        homeAdsEntity.setTitle(adsHome.getTitle());
+        homeAdsEntity.setCat(adsHome.getCat());
+        homeAdsEntity.setSubcat(adsHome.getSubcat());
+        homeAdsEntity.setDistEn(adsHome.getDistEn());
+        homeAdsEntity.setCityEn(adsHome.getCityEn());
+        homeAdsEntity.setClassifiedType(adsHome.getClassifiedType());
+        homeAdsEntity.setImage(adsHome.getImage());
+        homeAdsEntity.setSoldStatus(adsHome.getSoldStatus());
+        homeAdsEntity.setMemberRole(adsHome.getMemberRole());
+        homeAdsEntity.setRejectedStatus(adsHome.getRejectedStatus());
+        homeAdsEntity.setFavouriteStatus(adsHome.getFavouriteStatus());
+
+        long homeadsdb = homeAdsDao.createNewHomeAds(homeAdsEntity);
+//        Log.d(TAG,"db home ads "+homeadsdb);
+
+
+    }
+
     public Flowable<List<Category>> getCategory(){
 
         return splashApi.getCategory();
@@ -175,15 +306,15 @@ public class SplashRepoitory {
         return splashApi.getDistrict();
     }
 
-//    public Flowable<List<AdMarketProperty>> getHomeMarket(){
-//        return splashApi.getHomeMarket();
-//    }
-//    public Flowable<List<AdMarketProperty>> getHomeProperty(){
-//        return splashApi.getHomeProperty();
-//    }
-//    public Flowable<List<AdMarketProperty>> getHomeService(){
-//        return splashApi.getHomeService();
-//    }
+    public Flowable<List<AdMarketProperty>> getHomeMarket(){
+        return splashApi.getHomeMarket();
+    }
+    public Flowable<List<AdMarketProperty>> getHomeProperty(){
+        return splashApi.getHomeProperty();
+    }
+    public Flowable<List<AdMarketProperty>> getHomeService(){
+        return splashApi.getHomeService();
+    }
 
 
     public LiveData<List<CategoryEntity>> getCategoryFromDb(){
@@ -212,6 +343,14 @@ public class SplashRepoitory {
 
     public LiveData<List<CityEntity>> getCityByDistrictFromDb(String cityId){
         return districtDao.getCityListById(cityId);
+    }
+
+    public LiveData<List<HomeAdsEntity>> getHomeAllAdsFromDb(){
+        return homeAdsDao.getCategoryList();
+    }
+
+    public LiveData<List<HomeAdsEntity>> getCategoryListByTypeFromDb(String classifiedType){
+        return homeAdsDao.getCategoryListByType(classifiedType);
     }
 
 
