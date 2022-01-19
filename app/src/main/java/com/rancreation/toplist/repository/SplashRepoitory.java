@@ -8,8 +8,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import com.rancreation.toplist.data.CategoryDao;
+import com.rancreation.toplist.data.DistrictDao;
 import com.rancreation.toplist.models.retrofit.Category;
+import com.rancreation.toplist.models.retrofit.District;
 import com.rancreation.toplist.models.room.CategoryEntity;
+import com.rancreation.toplist.models.room.CityEntity;
+import com.rancreation.toplist.models.room.DistrictEntity;
 import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.network.splash.SplashApi;
 
@@ -28,15 +32,79 @@ import io.reactivex.schedulers.Schedulers;
 public class SplashRepoitory {
     private SplashApi splashApi;
     private CategoryDao categoryDao;
+    private DistrictDao districtDao;
     private static final String TAG = "SplashRepoitory";
 
     @Inject
-    public SplashRepoitory(SplashApi splashApi, CategoryDao categoryDao){
+    public SplashRepoitory(SplashApi splashApi, CategoryDao categoryDao, DistrictDao districtDao){
         this.splashApi = splashApi;
         this.categoryDao = categoryDao;
+        this.districtDao = districtDao;
     }
 
     public void loadAllData(){
+
+//        getRetrofitCategory();
+        getRetrofitDistrict();
+
+
+
+    }
+
+    private void getRetrofitDistrict() {
+        getDistrict()
+                .toObservable()
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<List<District>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull List<District> districts) {
+
+                        for(int i=0; i<districts.size();i++){
+
+                            DistrictEntity districtEntity = new DistrictEntity();
+                            districtEntity.setDistId(districts.get(i).getDistId());
+                            districtEntity.setDistEn(districts.get(i).getDistEn());
+                            districtEntity.setDistSi(districts.get(i).getDistSi());
+                            districtEntity.setDistTa(districts.get(i).getDistTa());
+
+                            Long districtId = districtDao.createNewDistrict(districtEntity);
+
+//                            Log.d(TAG, "DB District value "+districtId);
+
+                            for(int j=0; j<districts.get(i).getCities().size();j++){
+                                CityEntity cityEntity = new CityEntity();
+                                cityEntity.setDistrictId(districts.get(i).getDistId());
+                                cityEntity.setCityId(districts.get(i).getCities().get(j).getCityId());
+                                cityEntity.setCityEn(districts.get(i).getCities().get(j).getCityEn());
+                                cityEntity.setCitySi(districts.get(i).getCities().get(j).getCitySi());
+                                cityEntity.setCityTa(districts.get(i).getCities().get(j).getCityTa());
+                                cityEntity.setLat(districts.get(i).getCities().get(j).getLat());
+                                cityEntity.setLng(districts.get(i).getCities().get(j).getLng());
+
+                                Long cityid = districtDao.createNewCity(cityEntity);
+//                                Log.d(TAG, "DB city value "+cityid);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, "onError: "+e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void getRetrofitCategory() {
         getCategory()
                 .toObservable()
                 .subscribeOn(Schedulers.io())
@@ -102,10 +170,11 @@ public class SplashRepoitory {
         return splashApi.getCategory();
     }
 
-//    public Flowable<List<District>> getDistrict(){
-//        return splashApi.getDistrict();
-//    }
-//
+    public Flowable<List<District>> getDistrict(){
+
+        return splashApi.getDistrict();
+    }
+
 //    public Flowable<List<AdMarketProperty>> getHomeMarket(){
 //        return splashApi.getHomeMarket();
 //    }
@@ -117,20 +186,32 @@ public class SplashRepoitory {
 //    }
 
 
-    public LiveData<List<CategoryEntity>> getCategoryFromDataBase(){
+    public LiveData<List<CategoryEntity>> getCategoryFromDb(){
 
         return categoryDao.getCategoryList();
 
     }
 
-    public LiveData<List<SubcategoryEntity>> getSubCategoryFromDataBase(String catId){
+    public LiveData<List<SubcategoryEntity>> getSubCategoryByCatFromDb(String catId){
         return categoryDao.getSubCategoryListByCatId(catId);
 
     }
 
-    public LiveData<List<SubcategoryEntity>> getSubCategoryList(){
+    public LiveData<List<SubcategoryEntity>> getSubCategoryListFromDb(){
         return categoryDao.getSubCategoryList();
 
+    }
+
+    public LiveData<List<DistrictEntity>> getDistrictListFromDb(){
+        return districtDao.getDistrictList();
+    }
+
+    public LiveData<List<CityEntity>> getCityListFromDb(){
+        return districtDao.getCityList();
+    }
+
+    public LiveData<List<CityEntity>> getCityByDistrictFromDb(String cityId){
+        return districtDao.getCityListById(cityId);
     }
 
 

@@ -21,9 +21,19 @@ public class CityEntity {
 
     private String cityTa;
 
+    private String districtId;
+
     private String lat;
 
     private String lng;
+
+    public String getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(String districtId) {
+        this.districtId = districtId;
+    }
 
     public String getCityId() {
         return cityId;

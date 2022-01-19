@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a8ff65cc71bb9ea7fbd7481a7d2cc281",
+    "identityHash": "bc05765b409e7ac366114dbddc179fca",
     "entities": [
       {
         "tableName": "CategoryEntity",
@@ -103,12 +103,106 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "DistrictEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`distId` TEXT NOT NULL, `distEn` TEXT, `distSi` TEXT, `distTa` TEXT, PRIMARY KEY(`distId`))",
+        "fields": [
+          {
+            "fieldPath": "distId",
+            "columnName": "distId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distEn",
+            "columnName": "distEn",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "distSi",
+            "columnName": "distSi",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "distTa",
+            "columnName": "distTa",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "distId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "CityEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cityId` TEXT NOT NULL, `cityEn` TEXT, `citySi` TEXT, `cityTa` TEXT, `districtId` TEXT, `lat` TEXT, `lng` TEXT, PRIMARY KEY(`cityId`))",
+        "fields": [
+          {
+            "fieldPath": "cityId",
+            "columnName": "cityId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cityEn",
+            "columnName": "cityEn",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "citySi",
+            "columnName": "citySi",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cityTa",
+            "columnName": "cityTa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "districtId",
+            "columnName": "districtId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lat",
+            "columnName": "lat",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lng",
+            "columnName": "lng",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cityId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a8ff65cc71bb9ea7fbd7481a7d2cc281')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bc05765b409e7ac366114dbddc179fca')"
     ]
   }
 }

@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.room.CategoryEntity;
+import com.rancreation.toplist.models.room.CityEntity;
+import com.rancreation.toplist.models.room.DistrictEntity;
 import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.repository.SplashRepoitory;
 
@@ -27,13 +29,6 @@ public class SplashViewModel extends ViewModel {
 
         loadAllData();
 
-
-//        getAllDistrict();
-
-        //HOmeProperty
-//        getHomeMarket();
-//        getHomeProperty();
-//        getHomeService();
     }
 
 //    private void getHomeService() {
@@ -128,57 +123,34 @@ public class SplashViewModel extends ViewModel {
 //                });
 //    }
 
-//    private void getAllDistrict() {
-//        splashRepoitory.getDistrict()
-//                .toObservable()
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new Observer<List<District>>() {
-//                    @Override
-//                    public void onSubscribe(@NonNull Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onNext(@NonNull List<District> districts) {
-//
-//                        for(int i=0; i<districts.size();i++){
-//                            Log.d(TAG, districts.get(i).getDistEn());
-//
-//                            for(int j=0; j<districts.get(i).getCities().size();j++){
-//                                Log.d(TAG, " cities:"+districts.get(i).getCities().get(j).getCityEn());
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//                        Log.d(TAG, "onError: "+e);
-//                    }
-//
-//                    @Override
-//                    public void onComplete() {
-//
-//                    }
-//                });
-//    }
 
     public void loadAllData(){
         splashRepoitory.loadAllData();
-
     }
 
-    public LiveData<List<CategoryEntity>> getCategoryFromDataBase(){
-        return splashRepoitory.getCategoryFromDataBase();
+    public LiveData<List<CategoryEntity>> getCategoryFromDb(){
+        return splashRepoitory.getCategoryFromDb();
     }
 
-    public LiveData<List<SubcategoryEntity>> getCategoryFromDataBase(String catId){
-        return splashRepoitory.getSubCategoryFromDataBase(catId);
+    public LiveData<List<SubcategoryEntity>> getSubCategoryByCatFromDb(String catId){
+        return splashRepoitory.getSubCategoryByCatFromDb(catId);
     }
 
-    public LiveData<List<SubcategoryEntity>> getSubCategoryList(){
-        return splashRepoitory.getSubCategoryList();
+    public LiveData<List<SubcategoryEntity>> getSubCategoryListFromDb(){
+        return splashRepoitory.getSubCategoryListFromDb();
     }
 
+    public LiveData<List<DistrictEntity>> getDistrictListFromDb(){
+        return splashRepoitory.getDistrictListFromDb();
+    }
+
+    public LiveData<List<CityEntity>> getCityListFromDb(){
+        return splashRepoitory.getCityListFromDb();
+    }
+
+    public LiveData<List<CityEntity>> getCityByDistrictFromDb(String id){
+        return splashRepoitory.getCityByDistrictFromDb(id);
+    }
 
 
 }

@@ -22,7 +22,7 @@ public interface CategoryDao {
     LiveData<List<CategoryEntity>> getCategoryList();
 
     @Query("SELECT * FROM CATEGORYENTITY WHERE catId = :catId")
-    LiveData<CategoryEntity> getCategoryListById(String catId);
+    LiveData<List<CategoryEntity>> getCategoryListById(String catId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Long createNewCategory(CategoryEntity category);
@@ -39,7 +39,7 @@ public interface CategoryDao {
     LiveData<List<SubcategoryEntity>> getSubCategoryListByCatId(String catId);
 
     @Query("SELECT * FROM SUBCATEGORYENTITY WHERE  subcatId= :subcatId")
-    LiveData<SubcategoryEntity> getSubCategoryListBySubId(String subcatId);
+    LiveData<List<SubcategoryEntity>> getSubCategoryListBySubId(String subcatId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Long createNewSubCategory(SubcategoryEntity subCategory);

@@ -9,6 +9,8 @@ import android.util.Log;
 import com.rancreation.toplist.R;
 import com.rancreation.toplist.models.retrofit.Category;
 import com.rancreation.toplist.models.room.CategoryEntity;
+import com.rancreation.toplist.models.room.CityEntity;
+import com.rancreation.toplist.models.room.DistrictEntity;
 import com.rancreation.toplist.models.room.SubcategoryEntity;
 import com.rancreation.toplist.viewmodels.ViewModelProviderFactory;
 
@@ -36,35 +38,64 @@ public class SplashActivity extends DaggerAppCompatActivity {
 
 
 
-        // Sample output for other Activities
-        viewModel.getCategoryFromDataBase().observe(this, new Observer<List<CategoryEntity>>() {
+        // Sample output for other Activities ---------------------
+
+        viewModel.getCategoryFromDb().observe(this, new Observer<List<CategoryEntity>>() {
             @Override
             public void onChanged(List<CategoryEntity> categories) {
                 for(int i=0; i<categories.size(); i++){
-//                    Log.i(TAG, "LIST ITEMS *: "+categories.get(i).getCatId());
+
                 }
             }
         });
 
 
-        viewModel.getCategoryFromDataBase("4").observe(this, new Observer<List<SubcategoryEntity>>() {
+        viewModel.getSubCategoryByCatFromDb("4").observe(this, new Observer<List<SubcategoryEntity>>() {
             @Override
             public void onChanged(List<SubcategoryEntity> categories) {
                 for(int i=0; i<categories.size(); i++){
-//                    Log.i(TAG, "SUB LIST ITEMS*: "+categories.get(i).getCatId());
-//                    Log.i(TAG, "SUB LIST ITEMS*: "+categories.get(i).getSubcatEn());
+
                 }
             }
         });
 
-        viewModel.getSubCategoryList().observe(this, new Observer<List<SubcategoryEntity>>() {
+        viewModel.getSubCategoryListFromDb().observe(this, new Observer<List<SubcategoryEntity>>() {
             @Override
             public void onChanged(List<SubcategoryEntity> categories) {
                 for(int i=0; i<categories.size(); i++){
-//                    Log.i(TAG, "SUB LIST ITEMS: "+categories.get(i).getCatId());
-//                    Log.i(TAG, "SUB LIST ITEMS: "+categories.get(i).getSubcatEn());
+
                 }
             }
         });
+
+        viewModel.getDistrictListFromDb().observe(this, new Observer<List<DistrictEntity>>() {
+            @Override
+            public void onChanged(List<DistrictEntity> districts) {
+                for(int i=0; i<districts.size(); i++){
+
+                }
+            }
+        });
+
+        viewModel.getCityListFromDb().observe(this, new Observer<List<CityEntity>>() {
+            @Override
+            public void onChanged(List<CityEntity> cities) {
+                for(int i=0; i<cities.size(); i++){
+
+                }
+            }
+        });
+
+
+        viewModel.getCityByDistrictFromDb("6").observe(this, new Observer<List<CityEntity>>() {
+            @Override
+            public void onChanged(List<CityEntity> cities) {
+                for(int i=0; i<cities.size(); i++){
+
+                }
+            }
+        });
+
+        // -----------------------------------------------------------
     }
 }

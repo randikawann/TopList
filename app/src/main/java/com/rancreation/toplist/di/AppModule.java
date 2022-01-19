@@ -3,6 +3,7 @@ package com.rancreation.toplist.di;
 import android.app.Application;
 import androidx.room.Room;
 import com.rancreation.toplist.data.CategoryDao;
+import com.rancreation.toplist.data.DistrictDao;
 import com.rancreation.toplist.data.TopListDatabase;
 import com.rancreation.toplist.util.Constants;
 
@@ -55,6 +56,12 @@ public class AppModule {
     @Singleton
     CategoryDao provideArticleDao(TopListDatabase topListDatabase) {
         return topListDatabase.categoryDao();
+    }
+
+    @Provides
+    @Singleton
+    DistrictDao provideArticleDistrictDao(TopListDatabase topListDatabase) {
+        return topListDatabase.districtDao();
     }
 
 }
