@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 
 import com.rancreation.toplist.data.CategoryDao;
 import com.rancreation.toplist.models.retrofit.Category;
+import com.rancreation.toplist.models.room.CategoryEntity;
 import com.rancreation.toplist.network.splash.SplashApi;
 
 import java.util.List;
@@ -48,8 +49,19 @@ public class SplashRepoitory {
                     public void onNext(@NonNull List<Category> categories) {
                         Log.d(TAG, "1111: "+categories);
 
+
+
                         for(int i=0; i<categories.size();i++){
-                            long dc = categoryDao.createNewCategory(categories.get(i));
+
+                            CategoryEntity categoryentity = new CategoryEntity();
+                            categoryentity.setCatId(categories.get(i).getCatId());
+                            categoryentity.setCatEn(categories.get(i).getCatEn());
+                            categoryentity.setCatSi(categories.get(i).getCatSi());
+                            categoryentity.setCatTa(categories.get(i).getCatTa());
+                            categoryentity.setCatIcon(categories.get(i).getCatIcon());
+                            categoryentity.setType(categories.get(i).getType());
+
+                            long dc = categoryDao.createNewCategory(categoryentity);
                             Log.d(TAG,"db number "+dc);
                             Log.d(TAG,categories.get(i).getCatEn());
                         }
@@ -86,7 +98,7 @@ public class SplashRepoitory {
 //    }
 
 
-    public LiveData<List<Category>> getCategoryFromDataBase(){
+    public LiveData<List<CategoryEntity>> getCategoryFromDataBase(){
 
         return categoryDao.getCategoryList();
 

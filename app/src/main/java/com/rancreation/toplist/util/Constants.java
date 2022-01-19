@@ -6,7 +6,6 @@ package com.rancreation.toplist.util;
 public class Constants {
 
 
-
     public static final String CATEGORY_PART = "v1/get_cat_subcat";
     public static final String DISTRICT_PART = "v1/get_dist_city";
 

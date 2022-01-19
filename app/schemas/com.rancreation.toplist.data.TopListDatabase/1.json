@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "26bd0efcae36fd3b632b63214f080df7",
+    "identityHash": "e4a7f9117353080a720d7848a8a8942b",
     "entities": [
       {
-        "tableName": "Category",
+        "tableName": "CategoryEntity",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`catId` TEXT NOT NULL, `catEn` TEXT, `catSi` TEXT, `catTa` TEXT, `catIcon` TEXT, `type` TEXT, PRIMARY KEY(`catId`))",
         "fields": [
           {
@@ -58,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '26bd0efcae36fd3b632b63214f080df7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e4a7f9117353080a720d7848a8a8942b')"
     ]
   }
 }

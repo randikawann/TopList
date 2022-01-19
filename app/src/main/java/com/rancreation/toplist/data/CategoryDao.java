@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.rancreation.toplist.models.retrofit.Category;
+import com.rancreation.toplist.models.room.CategoryEntity;
 
 import java.util.List;
 
@@ -17,15 +18,15 @@ import java.util.List;
 @Dao
 public interface CategoryDao {
 
-    @Query("SELECT * FROM CATEGORY")
-    LiveData<List<Category>> getCategoryList();
+    @Query("SELECT * FROM CATEGORYENTITY")
+    LiveData<List<CategoryEntity>> getCategoryList();
 
-    @Query("SELECT * FROM CATEGORY WHERE catId = :catId")
-    LiveData<Category> getCategoryListById(String catId);
+    @Query("SELECT * FROM CATEGORYENTITY WHERE catId = :catId")
+    LiveData<CategoryEntity> getCategoryListById(String catId);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Long createNewCategory(Category category);
+    Long createNewCategory(CategoryEntity category);
 
     @Delete
-    void deleteCategory(Category category);
+    void deleteCategory(CategoryEntity category);
 }
